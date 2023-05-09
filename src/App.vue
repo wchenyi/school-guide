@@ -2,17 +2,19 @@
   <v-app style="background: rgba(0,0,0,0);">
     <div id="web_bg" :style="'background-image: url(' + imgUrl + ');'"></div>
     <v-app-bar app color="rgba(0,0,0,.2)" dark flat fixed>
-      <v-toolbar-title>Life In NJU</v-toolbar-title>
+      <v-toolbar-title>Life In YCU</v-toolbar-title>
       <v-spacer></v-spacer>
+      <!--修改GitHub标签链接-->
       <v-icon
-        @click="open('https://github.com/idealclover/Life-in-NJU')"
+        @click="open('https://github.com/wchenyi/school-guide')"
         class="mx-3"
       >
         mdi-github
       </v-icon>
+      <!--修改“分享”标签链接-->
       <v-icon
         class="shareLink"
-        data-clipboard-text="https://nju.today"
+        data-clipboard-text="https://ycu.wangcy.cf"
         @click="share"
       >
         mdi-open-in-new
@@ -127,19 +129,19 @@
         class="text-center white--text"
         style="background-color: rgba(0,0,0,.2); flex: 0 1 auto"
         cols="12"
-        >祝南哪 120 周年生日快乐！<br />
+      >
         ©{{ new Date().getFullYear() }}
         <a
-          href="https://idealclover.top"
+          href="https://wangcy.tk"
           class="white--text"
           target="_blank"
           rel="noopener noreferrer nofollow"
-          >idealclover</a
+          >Wangcy</a
         >
       </v-col>
       <v-snackbar v-model="snackbar">
         {{ snackText }}
-        <v-btn color="pink" text @click="snackbar = false">
+        <v-btn color="blue" text @click="snackbar = false">
           Close
         </v-btn>
       </v-snackbar>
@@ -157,7 +159,8 @@ import Clipboard from "clipboard";
 
 const dataUrl = "https://image.idealclover.cn/projects/Life-in-NJU/";
 const imgUrl =
-  dataUrl + "background/bg" + Math.floor(Math.random() * 24) + ".jpg";
+  dataUrl + "background/bg" + Math.floor(Math.random() * 10) + ".jpg";
+
 new Clipboard(".shareLink");
 Vue.use(Vuex);
 let nativeShare = new NativeShare();
@@ -214,11 +217,11 @@ export default {
     },
     share: function() {
       nativeShare.setShareData({
-        icon: "https://nju.today/img/icons/android-chrome-192x192.png",
-        link: "https://nju.today",
-        title: "南哪指南",
-        desc: "南哪人的专属导航页！",
-        from: "@idealclover"
+        icon: "https://ycu.wangcy.cf/img/icons/android-chrome-192x192.png",
+        link: "https://ycu.wangcy.cf",
+        title: "春院指南",
+        desc: "春院人的专属导航页！",
+        from: "@wchenyi"
       });
 
       // 唤起浏览器原生分享组件(如果在微信中不会唤起，此时call方法只会设置文案。类似setShareData)
